@@ -28,6 +28,22 @@
         <servlet-name>SearchRoomTypeController</servlet-name>
         <servlet-class>controller.roomtype.SearchRoomTypeController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteRoomController</servlet-name>
+        <servlet-class>controller.room.DeleteRoomController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateRoomController</servlet-name>
+        <servlet-class>controller.room.UpdateRoomController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchRoomController</servlet-name>
+        <servlet-class>controller.room.SearchRoomController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertRoomController</servlet-name>
+        <servlet-class>controller.room.InsertRoomController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController2</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -127,6 +143,22 @@
     <servlet-mapping>
         <servlet-name>SearchRoomTypeController</servlet-name>
         <url-pattern>/roomtype/search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteRoomController</servlet-name>
+        <url-pattern>/room/delete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateRoomController</servlet-name>
+        <url-pattern>/room/update</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchRoomController</servlet-name>
+        <url-pattern>/room/search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertRoomController</servlet-name>
+        <url-pattern>/room/insert</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

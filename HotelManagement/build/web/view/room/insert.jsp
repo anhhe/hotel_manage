@@ -32,9 +32,7 @@
 
         <!-- vendor css -->
         <link rel="stylesheet" href="../assets/css/style.css">
-        <%
-            ArrayList<Room> list_room = (ArrayList<Room>) request.getAttribute("list_room");
-        %>
+        
     </head>
 
     <body class="">
@@ -105,20 +103,7 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <div class="main-search open">
-                            <div class="input-group">
-                                <form action="../room/search" method="POST">
-                                    <div class="row">
-                                        <div>
-                                            <input type="text" id="m-search" name="text_search" class="form-control" placeholder="Search for name">
-                                        </div>
-                                        <div>
-                                            <span class="input-group-append search-btn btn btn-primary">
-                                                <button type="submit" class="btn btn-primary" >Search</button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                            
                         </div>
                     </li>
                 </ul>
@@ -153,111 +138,45 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div style="margin-bottom: 20px;">
-                                    <button type="button" class="btn btn-primary">
-                                        <a href="../room/insert" style="text-decoration: none;color: white;">Insert</a></button>
-                                </div>
-                                <!-- [ breadcrumb ] end -->
-                                <!-- [ Main Content ] start -->
-                                <div class="col-xl-12 col-md-12">
-                                    <div class="card table-card">
-                                        <div class="card-header">
-                                            <h5>List Room</h5>
-                                        </div>
-                                        <div class="card-body px-0 py-0">
-                                            <div class="table-responsive" >
-                                                <div class="session-scroll" style="height:478px;position:relative;">
-                                                    <table class="table table-hover m-b-0">
-                                                        <thead>
-                                                            <tr>
-                                                                <th><span>STT</span></th>
-                                                                <th><span>Name</span></th>
-                                                                <th><span>Room Type</span></th>
-                                                                <th><span>Status</span></th>
-                                                                <th><span>Update</span></th>
-                                                                <th><span>Delete</span></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <%
-                                                                for (int i = 0; i < list_room.size(); i++) {
-                                                            %>
-                                                            <tr>
-                                                                <td><%=(i + 1)%></td>
-                                                                <td><%=list_room.get(i).getRoomName()%></td>
-                                                                <td><%=list_room.get(i).getRoomType().getRoomTypeName()%></td>
-                                                                <td><%=list_room.get(i).isStatus() == true ? "Còn phòng" : "Hết phòng"%></td> 
-                                                                <td><button type="button" class="btn btn-primary"><a style="text-decoration: none;color: white;" href="../room/update?roomID=<%=list_room.get(i).getID()%>">Update</a></button></td> 
-                                                                <td><button type="button" class="btn btn-danger"><a style="text-decoration: none;color: white;" href="../room/delete?roomID=<%=list_room.get(i).getID()%>">Delete</a></button></td> 
-                                                            </tr>
-                                                            <%
-                                                                }
-                                                            %>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <!-- [ Main Content ] end -->
+                                <div class="col-xl-12 col-md-12" >
+                                    <form action="insert" method="POST">
+                                        <table class="table table-striped" style="border: 1px solid black;">
+                                            <tr>
+                                                <th scope="row">Room Name: </th>
+                                                <td><input style="border: 1px solid black;" name="name" type="text" class="form-control" placeholder="Room name" aria-describedby="basic-addon1"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Room Type: </th>
+                                                <td>
+                                                    <select name="roomtype">
+                                                        <c:forEach items="${list}" var="rt">
+                                                            <option value="${rt.getID()}" }>${rt.getRoomTypeName()}</option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Room Type: </th>
+                                                <td>
+                                                    <select name="status">
+                                                        <option value="true"}>Con phong</option>
+                                                        <option value="false"}>Het phong</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <button type="submit" class="btn btn-primary">Insert</button>
+                                    </form>
+
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- [ Main Content ] end -->
 
-        <!-- Warning Section start -->
-        <!-- Older IE warning message -->
-        <!--[if lt IE 11]>
-        <div class="ie-warning">
-            <h1>Warning!!</h1>
-            <p>You are using an outdated version of Internet Explorer, please upgrade
-               <br/>to any of the following web browsers to access this website.
-            </p>
-            <div class="iew-container">
-                <ul class="iew-download">
-                    <li>
-                        <a href="http://www.google.com/chrome/">
-                            <img src="../assets/images/browser/chrome.png" alt="Chrome">
-                            <div>Chrome</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.mozilla.org/en-US/firefox/new/">
-                            <img src="../assets/images/browser/firefox.png" alt="Firefox">
-                            <div>Firefox</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://www.opera.com">
-                            <img src="../assets/images/browser/opera.png" alt="Opera">
-                            <div>Opera</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.apple.com/safari/">
-                            <img src="../assets/images/browser/safari.png" alt="Safari">
-                            <div>Safari</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
-                            <img src="../assets/images/browser/ie.png" alt="">
-                            <div>IE (11 & above)</div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <p>Sorry for the inconvenience!</p>
-        </div>
-    <![endif]-->
-        <!-- Warning Section Ends -->
-
-        <!-- Required Js -->
         <script src="../assets/js/vendor-all.min.js"></script>
         <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
         <script src="../assets/js/pcoded.min.js"></script>
