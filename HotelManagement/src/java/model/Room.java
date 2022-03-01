@@ -15,17 +15,18 @@ public class Room {
     private String roomName;
     private boolean status;
     private RoomType roomType;
+    private String image;
 
     public Room() {
     }
 
-    public Room(String roomName, boolean status, RoomType roomType) {
+    public Room(String roomName, boolean status, RoomType roomType, String image) {
         this.roomName = roomName;
         this.status = status;
         this.roomType = roomType;
     }
 
-    public Room(int ID, String roomName, boolean status, RoomType roomType) {
+    public Room(int ID, String roomName, boolean status, RoomType roomType, String image) {
         this.ID = ID;
         this.roomName = roomName;
         this.status = status;
@@ -62,6 +63,14 @@ public class Room {
 
     public void setRoomType(RoomType roomType) {
         this.roomType = roomType;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override

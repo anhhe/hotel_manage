@@ -85,12 +85,13 @@ public class InsertRoomController extends HttpServlet {
         String name = request.getParameter("name");
         int roomtype = Integer.parseInt(request.getParameter("roomtype"));
         boolean status = Boolean.parseBoolean(request.getParameter("status"));
+        String image = request.getParameter("image");
 
         RoomType roomType = new RoomType();
         roomType.setID(roomtype);
         roomType = new RoomTypeDBContext().getOne(roomType);
 
-        Room room = new Room(name, status, roomType);
+        Room room = new Room(name, status, roomType, image);
         new RoomDBContext().insert(room);
         response.sendRedirect("../room/list");
     }

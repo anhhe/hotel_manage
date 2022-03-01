@@ -165,6 +165,12 @@
                                                     </select>
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <th scope="row">Image: </th>
+                                                <td>
+                                                    <input type="file" name="image" value="" />
+                                                </td>
+                                            </tr>
                                         </table>
                                         <button type="submit" class="btn btn-primary">Insert</button>
                                     </form>

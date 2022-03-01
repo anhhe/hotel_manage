@@ -37,7 +37,7 @@ public class RoomDBContext extends DBContext {
                 roomType.setID(rs.getInt(4));
                 roomType = new RoomTypeDBContext().getOne(roomType);
 
-                Room r = new Room(rs.getInt(1), rs.getString(2), rs.getBoolean(3), roomType);
+                Room r = new Room(rs.getInt(1), rs.getString(2), rs.getBoolean(3), roomType, rs.getString(5));
                 list.add(r);
             }
             return list;
@@ -81,7 +81,7 @@ public class RoomDBContext extends DBContext {
                 roomType.setID(rs.getInt(4));
                 roomType = new RoomTypeDBContext().getOne(roomType);
 
-                Room r = new Room(rs.getInt(1), rs.getString(2), rs.getBoolean(3), roomType);
+                Room r = new Room(rs.getInt(1), rs.getString(2), rs.getBoolean(3), roomType, rs.getString(5));
                 return r;
             }
         } catch (SQLException ex) {
@@ -131,7 +131,7 @@ public class RoomDBContext extends DBContext {
                 roomType.setID(rs.getInt(4));
                 roomType = new RoomTypeDBContext().getOne(roomType);
 
-                Room r = new Room(rs.getInt(1), rs.getString(2), rs.getBoolean(3), roomType);
+                Room r = new Room(rs.getInt(1), rs.getString(2), rs.getBoolean(3), roomType, rs.getString(5));
                 list.add(r);
             }
             return list;

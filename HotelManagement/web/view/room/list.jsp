@@ -174,6 +174,7 @@
                                                                 <th><span>Name</span></th>
                                                                 <th><span>Room Type</span></th>
                                                                 <th><span>Status</span></th>
+                                                                <th><span>Image</span></th>
                                                                 <th><span>Update</span></th>
                                                                 <th><span>Delete</span></th>
                                                             </tr>
@@ -187,6 +188,7 @@
                                                                 <td><%=list_room.get(i).getRoomName()%></td>
                                                                 <td><%=list_room.get(i).getRoomType().getRoomTypeName()%></td>
                                                                 <td><%=list_room.get(i).isStatus() == true ? "Còn phòng" : "Hết phòng"%></td> 
+                                                                <td><%=list_room.get(i).getImage() %></td>
                                                                 <td><button type="button" class="btn btn-primary"><a style="text-decoration: none;color: white;" href="../room/update?roomID=<%=list_room.get(i).getID()%>">Update</a></button></td> 
                                                                 <td><button type="button" class="btn btn-danger"><a style="text-decoration: none;color: white;" href="../room/delete?roomID=<%=list_room.get(i).getID()%>">Delete</a></button></td> 
                                                             </tr>
