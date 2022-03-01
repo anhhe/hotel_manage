@@ -6,13 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>roomtype-list</title>
-        <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 11]>
-                <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-                <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-                <![endif]-->
-        <!-- Meta -->
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -21,34 +15,25 @@
               content="admin templates, bootstrap admin templates, bootstrap 4, dashboard, dashboard templets, sass admin templets, html admin templates, responsive, bootstrap admin templates free download,premium bootstrap admin templates, Flash Able, Flash Able bootstrap admin template">
         <meta name="author" content="Codedthemes" />
 
-        <!-- Favicon icon -->
         <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
-        <!-- fontawesome icon -->
         <link rel="stylesheet" href="../assets/fonts/fontawesome/css/fontawesome-all.min.css">
-        <!-- animation css -->
         <link rel="stylesheet" href="../assets/plugins/animation/css/animate.min.css">
 
-        <!-- vendor css -->
         <link rel="stylesheet" href="../assets/css/style.css">
     </head>
 
     <body class="">
-        <!-- [ Pre-loader ] start -->
         <div class="loader-bg">
             <div class="loader-track">
                 <div class="loader-fill"></div>
             </div>
         </div>
-        <!-- [ Pre-loader ] End -->
 
-        <!-- [ navigation menu ] start -->
         <nav class="pcoded-navbar menupos-fixed menu-light brand-blue ">
             <div class="navbar-wrapper ">
                 <div class="navbar-brand header-logo">
                     <a href="../admin/home" class="b-brand" style="color:white;">
                         HOTEL MANAGEMENT
-                        <!--<img src="../assets/images/logo_holiday.jpeg" alt="" class="logo images">
-                        <img src="../assets/images/logo_holiday.jpeg" alt="" class="logo-thumb images" >-->
                     </a>
                     <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
                 </div>
@@ -81,9 +66,7 @@
                 </div>
             </div>
         </nav>
-        <!-- [ navigation menu ] end -->
 
-        <!-- [ Header ] start -->
         <header class="navbar pcoded-header navbar-expand-lg navbar-light headerpos-fixed">
             <div class="m-header">
                 <a class="mobile-menu" id="mobile-collapse1" href="#!"><span></span></a>
@@ -101,13 +84,19 @@
                     <li class="nav-item">
                         <div class="main-search open">
                             <div class="input-group">
-                                <input type="text" id="m-search" class="form-control" placeholder="Search . . .">
-                                <a href="#!" class="input-group-append search-close">
-                                    <i class="feather icon-x input-group-text"></i>
-                                </a>
-                                <span class="input-group-append search-btn btn btn-primary">
-                                    <i class="feather icon-search input-group-text"></i>
-                                </span>
+                                <form action="../roomtype/search" method="POST">
+                                    <div class="row">
+                                        <div>
+                                            <input type="text" id="m-search" name="text_search" class="form-control" placeholder="Search for name">
+                                        </div>
+                                        <div>
+                                            <span class="input-group-append search-btn btn btn-primary">
+                                                <button type="submit" class="btn btn-primary" >Search</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </form>
+
                             </div>
                         </div>
                     </li>
@@ -118,9 +107,7 @@
                 </ul>
             </div>
         </header>
-        <!-- [ Header ] end -->
 
-        <!-- [ Main Content ] start -->
         <div class="pcoded-main-container">
             <div class="pcoded-wrapper">
                 <div class="pcoded-content">
@@ -147,12 +134,11 @@
                                     <button type="button" class="btn btn-primary">
                                         <a href="../roomtype/insert" style="text-decoration: none;color: white;">Insert</a></button>
                                 </div>
-                                <!-- [ breadcrumb ] end -->
-                                <!-- [ Main Content ] start -->
+
                                 <div class="col-xl-12 col-md-12">
                                     <div class="card table-card">
                                         <div class="card-header">
-                                            <h5>List Product Type</h5>
+                                            <h5>List Room Type</h5>
                                         </div>
                                         <div class="card-body px-0 py-0">
                                             <div class="table-responsive" >
@@ -177,8 +163,8 @@
                                                                     <td>${rt.getNumberOfPeople() == 0 ? "dành cho nhiều người":rt.getNumberOfPeople()}</td>
                                                                     <td>${rt.getPrice()} (VNĐ)</td>
                                                                     <td>${rt.getDescription()}</td> 
-                                                                    <td><button type="button" class="btn btn-primary">Update</button></td> 
-                                                                    <td><button type="button" class="btn btn-danger">Delete</button></td> 
+                                                                    <td><button type="button" class="btn btn-primary"><a style="text-decoration: none;color: white;" href="../roomtype/update?roomtypeID=${rt.getID()}">Update</a></button></td> 
+                                                                    <td><button type="button" class="btn btn-danger"><a style="text-decoration: none;color: white;" href="../roomtype/delete?roomtypeID=${rt.getID()}">Delete</a></button></td> 
                                                                 </tr>
                                                             </c:forEach>
 
@@ -191,63 +177,13 @@
                                     </div>
                                 </div>
 
-                                <!-- [ Main Content ] end -->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- [ Main Content ] end -->
 
-        <!-- Warning Section start -->
-        <!-- Older IE warning message -->
-        <!--[if lt IE 11]>
-        <div class="ie-warning">
-            <h1>Warning!!</h1>
-            <p>You are using an outdated version of Internet Explorer, please upgrade
-               <br/>to any of the following web browsers to access this website.
-            </p>
-            <div class="iew-container">
-                <ul class="iew-download">
-                    <li>
-                        <a href="http://www.google.com/chrome/">
-                            <img src="../assets/images/browser/chrome.png" alt="Chrome">
-                            <div>Chrome</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.mozilla.org/en-US/firefox/new/">
-                            <img src="../assets/images/browser/firefox.png" alt="Firefox">
-                            <div>Firefox</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://www.opera.com">
-                            <img src="../assets/images/browser/opera.png" alt="Opera">
-                            <div>Opera</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.apple.com/safari/">
-                            <img src="../assets/images/browser/safari.png" alt="Safari">
-                            <div>Safari</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
-                            <img src="../assets/images/browser/ie.png" alt="">
-                            <div>IE (11 & above)</div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <p>Sorry for the inconvenience!</p>
-        </div>
-    <![endif]-->
-        <!-- Warning Section Ends -->
-
-        <!-- Required Js -->
         <script src="../assets/js/vendor-all.min.js"></script>
         <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
         <script src="../assets/js/pcoded.min.js"></script>

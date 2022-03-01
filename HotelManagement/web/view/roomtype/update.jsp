@@ -129,7 +129,7 @@
                                                 </div>
                                                 <ul class="breadcrumb">
                                                     <li class="breadcrumb-item"><a href="../admin/home"><i class="feather icon-home"></i></a></li>
-                                                    <li class="breadcrumb-item"><a href="insert">Insert Room Type</a></li>
+                                                    <li class="breadcrumb-item"><a href="insert">Update Room Type</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -137,26 +137,28 @@
                                 </div>
 
                                 <div class="col-xl-12 col-md-12" >
-                                    <form action="insert" method="POST">
+                                    <form action="update" method="POST">
+                                        <input type="hidden" name="roomtypeID" value="${rt.getID()}" />
                                         <table class="table table-striped" style="border: 1px solid black;">
                                             <tr>
                                                 <th scope="row">Room Type Name: </th>
-                                                <td><input style="border: 1px solid black;" name="name" type="text" class="form-control" placeholder="Room type name" aria-describedby="basic-addon1"></td>
+                                                <td><input style="border: 1px solid black;" name="name" value="${rt.getRoomTypeName()}" type="text" class="form-control" placeholder="Room type name" aria-describedby="basic-addon1"></td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Price: </th>
-                                                <td><input style="border: 1px solid black;" name="price" type="text" class="form-control" placeholder="Price" aria-describedby="basic-addon1"></td>
+                                                <td><input style="border: 1px solid black;" name="price" value="${rt.getPrice()}" type="text" class="form-control" placeholder="Price" aria-describedby="basic-addon1"></td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Number Of People: </th>
-                                                <td><input style="border: 1px solid black;" name="people" type="text" class="form-control" placeholder="Number of people" aria-describedby="basic-addon1"></td>
+                                                <td><input style="border: 1px solid black;" name="people" value="${rt.getNumberOfPeople()}" type="text" class="form-control" placeholder="Number of people" aria-describedby="basic-addon1"></td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Description: </th>
-                                                <td><textarea style="border: 1px solid black;" name="description" class="form-control" aria-label="With textarea"></textarea></td>
+                                                <td><p><input type="hidden" name="description2" value="${rt.getDescription()}" />${rt.getDescription()}</p>
+                                                    <textarea style="border: 1px solid black;" name="description" class="form-control" aria-label="With textarea"></textarea></td>
                                             </tr>
                                         </table>
-                                        <button type="submit" class="btn btn-primary">Insert</button>
+                                        <button type="submit" class="btn btn-primary">Update</button>
                                     </form>
 
                                 </div>
