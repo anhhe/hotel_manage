@@ -77,7 +77,7 @@
 
                             </ul>
                         </li>
-                        
+
                 </div>
             </div>
         </nav>
@@ -101,13 +101,18 @@
                     <li class="nav-item">
                         <div class="main-search open">
                             <div class="input-group">
-                                <input type="text" id="m-search" class="form-control" placeholder="Search . . .">
-                                <a href="#!" class="input-group-append search-close">
-                                    <i class="feather icon-x input-group-text"></i>
-                                </a>
-                                <span class="input-group-append search-btn btn btn-primary">
-                                    <i class="feather icon-search input-group-text"></i>
-                                </span>
+                                <form action="../producttype/search" method="POST">
+                                    <div class="row">
+                                        <div>
+                                            <input type="text" id="m-search" name="text_search" class="form-control" placeholder="Search for name">
+                                        </div>
+                                        <div>
+                                            <span class="input-group-append search-btn btn btn-primary">
+                                                <button type="submit" class="btn btn-primary" >Search</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </li>
@@ -145,7 +150,7 @@
                                 </div>
                                 <div style="margin-bottom: 20px;">
                                     <button type="button" class="btn btn-primary">
-                                        <a href="" style="text-decoration: none;color: white;">Insert</a></button>
+                                        <a href="../producttype/insert" style="text-decoration: none;color: white;">Insert</a></button>
                                 </div>
                                 <!-- [ breadcrumb ] end -->
                                 <!-- [ Main Content ] start -->
@@ -167,14 +172,15 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <c:forEach items="${list}" var="pt" varStatus="status">
-                                                            <tr>
-                                                                <td>${status.count}</td>
-                                                                <td>${pt.getProductTypeName()}</td>
-                                                                <td><button type="button" class="btn btn-primary">Update</button></td> 
-                                                                <td><button type="button" class="btn btn-danger">Delete</button></td> 
-                                                            </tr>
-                                                        </c:forEach>
+                                                            <c:forEach items="${list}" var="pt" varStatus="status">
+                                                                <tr>
+                                                                    <td>${status.count}</td>
+                                                                    <td>${pt.getProductTypeName()}</td>
+                                                                    <td><button type="button" class="btn btn-primary">
+                                                                                <a style="text-decoration: none;color: white;" href="../producttype/update?producttypeID=${pt.getID()}">Update</a></button></td> 
+                                                                    <td><button type="button" class="btn btn-danger"><a style="text-decoration: none;color: white;" href="../producttype/delete?producttypeID=${pt.getID()}">Delete</a></button></td> 
+                                                                </tr>
+                                                            </c:forEach>
 
 
                                                         </tbody>
