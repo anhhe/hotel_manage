@@ -29,7 +29,12 @@ public class RoomDBContext extends DBContext {
     public ArrayList<Room> getAll() {
         ArrayList<Room> list = new ArrayList<>();
         try {
-            String sql = "select * from Room";
+            String sql = "SELECT TOP (1000) [ID]\n"
+                    + "      ,[RoomName]\n"
+                    + "      ,[status]\n"
+                    + "      ,[RoomTypeID]\n"
+                    + "      ,[image]\n"
+                    + "  FROM [HotelManagement].[dbo].[Room]";
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {

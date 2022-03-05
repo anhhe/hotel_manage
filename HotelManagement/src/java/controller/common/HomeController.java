@@ -5,6 +5,7 @@
  */
 package controller.common;
 
+import dal.CustomerDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,6 +13,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Account;
+import model.Customer;
 
 /**
  *
@@ -57,6 +60,13 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Account account = new Account();
+        account = (Account)request.getSession().getAttribute("account");
+        
+        Customer customer = new Customer();
+        customer = new CustomerDBContext().getOneByAccountID(account);
+        
+        request.setAttribute("customer", customer);
         request.getRequestDispatcher("../view/common/home.jsp").forward(request, response);
     }
 

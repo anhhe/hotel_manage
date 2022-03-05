@@ -57,7 +57,29 @@ public class CustomerDBContext extends DBContext {
             while (rs.next()) {
                 Account acc = new Account();
                 acc = new AccountDBContext().getAccountByID(rs.getInt(9));
-                
+
+                Customer customer = new Customer(rs.getInt(1),
+                        rs.getString(2), rs.getString(3),
+                        rs.getString(4), rs.getString(5),
+                        rs.getBoolean(6), rs.getString(7), rs.getBoolean(8), acc);
+                return customer;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(RoomDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public Customer getOneByAccountID(Account account) {
+        try {
+            String sql = "select * from Customer where accountID = ?";
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, account.getID());
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Account acc = new Account();
+                acc = new AccountDBContext().getAccountByID(rs.getInt(9));
+
                 Customer customer = new Customer(rs.getInt(1),
                         rs.getString(2), rs.getString(3),
                         rs.getString(4), rs.getString(5),
