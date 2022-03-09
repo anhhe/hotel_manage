@@ -23,6 +23,14 @@ public class Payment {
     public Payment() {
     }
 
+    public Payment(Booking booking, double amount, Date date, String note, boolean status) {
+        this.booking = booking;
+        this.amount = amount;
+        this.date = date;
+        this.note = note;
+        this.status = status;
+    }
+
     public Payment(int ID, Booking booking, double amount, Date date, String note, boolean status) {
         this.ID = ID;
         this.booking = booking;

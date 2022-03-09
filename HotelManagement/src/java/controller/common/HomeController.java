@@ -60,13 +60,6 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Account account = new Account();
-        account = (Account)request.getSession().getAttribute("account");
-        
-        Customer customer = new Customer();
-        customer = new CustomerDBContext().getOneByAccountID(account);
-        
-        request.setAttribute("customer", customer);
         request.getRequestDispatcher("../view/common/home.jsp").forward(request, response);
     }
 

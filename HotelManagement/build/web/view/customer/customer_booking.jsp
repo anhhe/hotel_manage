@@ -203,6 +203,52 @@
     .booking-form .submit-btn:focus {
         opacity: 0.9
     }
+
+    .buttons_added {
+        opacity:1;
+        display:inline-block;
+        display:-ms-inline-flexbox;
+        display:inline-flex;
+        white-space:nowrap;
+        vertical-align:top;
+    }
+    .is-form {
+        overflow:hidden;
+        position:relative;
+        background-color:#f9f9f9;
+        height:2.2rem;
+        width:1.9rem;
+        padding:0;
+        text-shadow:1px 1px 1px #fff;
+        border:1px solid #ddd;
+    }
+    .is-form:focus,.input-text:focus {
+        outline:none;
+    }
+    .is-form.minus {
+        border-radius:4px 0 0 4px;
+    }
+    .is-form.plus {
+        border-radius:0 4px 4px 0;
+    }
+    .input-qty {
+        background-color:#fff;
+        height:2.2rem;
+        text-align:center;
+        font-size:1rem;
+        display:inline-block;
+        vertical-align:top;
+        margin:0;
+        border-top:1px solid #ddd;
+        border-bottom:1px solid #ddd;
+        border-left:0;
+        border-right:0;
+        padding:0;
+    }
+    .input-qty::-webkit-outer-spin-button,.input-qty::-webkit-inner-spin-button {
+        -webkit-appearance:none;
+        margin:0;
+    }
 </style>
 <div id="booking" class="section">
     <div class="section-center">
@@ -218,6 +264,8 @@
                         <p>Có giá: ${room.getRoomType().getPrice()}</p>
                     </div>
                     <form action="../customer/booking" method="POST">
+                        <input type="hidden" name="customerID" value="${c.getId()}" />
+                        <input type="hidden" name="roomID" value="${room.getID()}" />
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group"> <input name="checkIn" class="form-control" type="date" required> <span class="form-label">Check In</span> </div>
@@ -227,16 +275,26 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group"> <select class="form-control" required name="product">
-                                        <option value="" selected hidden>Bạn có thể đặt sản phẩm</option>
-                                        <c:forEach items="${list_p}" var="p">
-                                            <option value="${p.getID()}">${p.getProductName()}</option>
-                                        </c:forEach>
-                                    </select> <span class="select-arrow"></span> <span class="form-label">Rooms</span> </div>
+                            <div class="col-md-12" >
+                                <p style="
+                                   color: white;">Nếu bạn muốn order đồ ăn hãy ấn tại đây</p><input type="button" id="btn2" value="Hiển thị menu"/>
+                                <div id="temp" style="display: none;color: white;">
+                                    <c:forEach items="${list_p}" var="p">
+                                        <div class="col-md-12">
+                                            <input type="checkbox" name="product" value="${p.getID()}" />${p.getProductName()}
+                                            | ${p.getCost()}
+                                            <div class="buttons_added ">
+                                                <input class="minus is-form" type="button" value="-">
+                                                <input aria-label="quantity" class="input-qty" max="${p.getQuantity()}" min="0" name="quantity_product${p.getID()}" type="number" value="">
+                                                <input class="plus is-form" type="button" value="+">
+                                            </div>
+                                        </div>
+                                    </c:forEach>
+                                </div>
                             </div>
                         </div>
-                        <div class="row" style="color: white;">
+                        <input type="button" id="btn1" value="Order" style="visibility: hidden;margin-top: 20px;"/>
+                        <div class="row" style="color: white;margin-top: 20px;">
                             <div class="col-md-6">
                                 <p>Số điện thoại đặt phòng: ${c.getPhone()}</p>
                             </div>
@@ -252,3 +310,41 @@
         </div>
     </div>
 </div>
+<script language="javascript">
+
+    document.getElementById("btn1").onclick = function () {
+        document.getElementById("temp").style.display = 'none';
+        document.getElementById("btn1").style.visibility = 'hidden';
+        document.getElementById("btn2").style.visibility = 'visible';
+    };
+
+    document.getElementById("btn2").onclick = function () {
+        document.getElementById("temp").style.display = 'block';
+        document.getElementById("btn2").style.visibility = 'hidden';
+        document.getElementById("btn1").style.visibility = 'visible';
+    };
+
+    $('input.input-qty').each(function () {
+        var $this = $(this),
+                qty = $this.parent().find('.is-form'),
+                min = Number($this.attr('min')),
+                max = Number($this.attr('max'))
+        if (min == 0) {
+            var d = 0
+        } else
+            d = min
+        $(qty).on('click', function () {
+            if ($(this).hasClass('minus')) {
+                if (d > min)
+                    d += -1
+            } else if ($(this).hasClass('plus')) {
+                var x = Number($this.val()) + 1
+                if (x <= max)
+                    d += 1
+            }
+            $this.attr('value', d).val(d)
+        })
+    })
+
+</script>
+

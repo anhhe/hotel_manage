@@ -18,11 +18,12 @@ import model.ProductType;
  *
  * @author haili
  */
-public class ProductDBContext extends DBContext{
-     private PreparedStatement ps;
+public class ProductDBContext extends DBContext {
+
+    private PreparedStatement ps;
     private ResultSet rs;
     ArrayList<Product> pro = new ArrayList<Product>();
-    
+
     public ArrayList<Product> getAll() {
         ArrayList<Product> list = new ArrayList<>();
         String sql = "select * from Product";
@@ -41,6 +42,29 @@ public class ProductDBContext extends DBContext{
                 list.add(pro);
             }
             return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public Product getOne(int productID) {
+        String sql = "select * from Product where ID = ?";
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, productID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ProductType producType = new ProductType();
+                producType = new ProductTypeDBContext().getOne(rs.getInt(4));
+                Product pro = new Product(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getDouble(3),
+                        producType,
+                        rs.getInt(5),
+                        rs.getString(6), rs.getBoolean(7));
+                return pro;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }

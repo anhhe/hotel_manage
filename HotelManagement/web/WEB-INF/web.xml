@@ -1,5 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <filter>
+        <filter-name>FilterSecurity</filter-name>
+        <filter-class>filter.FilterSecurity</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterSecurity</filter-name>
+        <url-pattern>/admin/home</url-pattern>
+        <url-pattern>/employee/list</url-pattern>
+        <url-pattern>/employeetype/list</url-pattern>
+        <url-pattern>/customer/payment_detail</url-pattern>
+        <url-pattern>/customer/no_payment</url-pattern>
+        <url-pattern>/customer/schedule_booking</url-pattern>
+        <url-pattern>/customer/search_room</url-pattern>
+        <url-pattern>/customer/list_room_byrt</url-pattern>
+        <url-pattern>/customer/booking</url-pattern>
+        <url-pattern>/customer/list_room</url-pattern>
+        <url-pattern>/customer/list</url-pattern>
+        <url-pattern>/payment/list</url-pattern>
+        <url-pattern>/ListProductController</url-pattern>
+        <url-pattern>/producttype/delete</url-pattern>
+        <url-pattern>/producttype/insert</url-pattern>
+        <url-pattern>/producttype/list</url-pattern>
+        <url-pattern>/producttype/search</url-pattern>
+        <url-pattern>/producttype/update</url-pattern>
+        <url-pattern>/room/delete</url-pattern>
+        <url-pattern>/room/insert</url-pattern>
+        <url-pattern>/room/list</url-pattern>
+        <url-pattern>/room/search</url-pattern>
+        <url-pattern>/room/update</url-pattern>
+        <url-pattern>/roomtype/delete</url-pattern>
+        <url-pattern>/roomtype/insert</url-pattern>
+        <url-pattern>/roomtype/list</url-pattern>
+        <url-pattern>/roomtype/search</url-pattern>
+        <url-pattern>/roomtype/update</url-pattern>
+        <url-pattern>/customer/thanks</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>LoginController2</servlet-name>
         <servlet-class>controller.authentication.LoginController</servlet-class>
@@ -67,6 +103,34 @@
     <servlet>
         <servlet-name>CutomerBookingController</servlet-name>
         <servlet-class>controller.customer.CutomerBookingController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerListRByRTController</servlet-name>
+        <servlet-class>controller.customer.CustomerListRByRTController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerSearchRoom</servlet-name>
+        <servlet-class>controller.customer.CustomerSearchRoom</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerScheduleBooking</servlet-name>
+        <servlet-class>controller.customer.CustomerScheduleBooking</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerNoPaymentController</servlet-name>
+        <servlet-class>controller.customer.CustomerNoPaymentController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerPaymentDetailController</servlet-name>
+        <servlet-class>controller.customer.CustomerPaymentDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerThankController</servlet-name>
+        <servlet-class>controller.customer.CustomerThankController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerCancelRoomController</servlet-name>
+        <servlet-class>controller.customer.CustomerCancelRoomController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController2</servlet-name>
@@ -207,6 +271,34 @@
     <servlet-mapping>
         <servlet-name>CutomerBookingController</servlet-name>
         <url-pattern>/customer/booking</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerListRByRTController</servlet-name>
+        <url-pattern>/customer/list_room_byrt</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerSearchRoom</servlet-name>
+        <url-pattern>/customer/search_room</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerScheduleBooking</servlet-name>
+        <url-pattern>/customer/schedule_booking</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerNoPaymentController</servlet-name>
+        <url-pattern>/customer/no_payment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerPaymentDetailController</servlet-name>
+        <url-pattern>/customer/payment_detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerThankController</servlet-name>
+        <url-pattern>/customer/thanks</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerCancelRoomController</servlet-name>
+        <url-pattern>/customer/cancel_room</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

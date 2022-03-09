@@ -71,7 +71,7 @@
 </style>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="index.html">HOTEL MANAGEMENT</a>
+        <a class="navbar-brand" href="../customer/list_room">HOTEL MANAGEMENT</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -81,22 +81,28 @@
                 <li class="nav-item">
                     <a class="nav-link" href="../common/home">Home</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="category.html">Loại phòng</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="../customer/list_room">Phòng</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="product.html">Phòng</a>
+                    <a class="nav-link" href="../customer/schedule_booking">Lịch đặt phòng của bạn</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="cart.html">Lịch đặt phòng của bạn</a>
-                </li>
+                <c:if test="${sessionScope.account != null}">
+                    <li class="nav-item">
+                        <a class="nav-link" href=".">${sessionScope.account.getDisplayName()}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../logout">Logout</a>
+                    </li>
+                </c:if>
+
             </ul>
 
-            <form class="form-inline my-2 my-lg-0">
+            <form class="form-inline my-2 my-lg-0" action="../customer/search_room" method="POST">
                 <div class="input-group input-group-sm">
-                    <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Tìm...">
+                    <input type="text"name="search" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Tìm...">
                     <div class="input-group-append">
-                        <button type="button" class="btn btn-secondary btn-number">
+                        <button type="submit" class="btn btn-secondary btn-number">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -113,9 +119,9 @@
                 <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Loại phòng</div>
                 <ul class="list-group category_block">
                     <c:forEach items="${list_rt}" var="rt">
-                        <li class="list-group-item"><a href="category.html">${rt.getRoomTypeName()}</a></li>
+                        <li class="list-group-item"><a href="../customer/list_room_byrt?rtID=${rt.getID()}">${rt.getRoomTypeName()}</a></li>
                         </c:forEach>
-
+                    <li class="list-group-item"><a href="../customer/list_room">All</a></li>
                 </ul>
             </div>
         </div>
@@ -124,39 +130,32 @@
                 <c:forEach items="${list_r}" var="r">
                     <div class="col-12 col-md-6 col-lg-4" style="text-align: center;margin-bottom: 20px;">
                         <div class="card">
-                            <img class="card-img-top" src="../img/room/${r.getImage()}" alt="Card image cap">
-                            <p>${r.getImage()}</p>
+                            <img class="card-img-top" src="../img/room/${r.getImage()}" alt="Card image cap" style="height: 200px;">
+                            <h6 style="margin-top: 20px;">Số người ở: ${r.getRoomType().getNumberOfPeople()}</h6>
                             <div class="card-body">
                                 <h4 class="card-title"><a href="product.html" title="View Product">${r.getRoomName()}</a></h4>
                                 <div class="row">
                                     <div class="col">
                                         <p class="btn btn-danger btn-block">${r.getRoomType().getPrice()} </p>
                                     </div>
-                                    <div class="col">
-                                        <a href="../customer/booking?roomID=${r.getID()}" class="btn btn-success btn-block">Đặt phòng ngay</a>
-                                    </div>
+                                    <c:choose>
+                                        <c:when test="${r.isStatus() == true}">
+                                            <div class="col">
+                                                <a href="../customer/booking?roomID=${r.getID()}" class="btn btn-success btn-block">Đặt phòng ngay</a>
+                                            </div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div class="col">
+                                                <a href="" class="btn btn-secondary btn-block">Hết phòng</a>
+                                            </div>
+                                        </c:otherwise>
+                                    </c:choose>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </c:forEach>
-                <!--<div class="col-12">
-                    <nav aria-label="...">
-                        <ul class="pagination">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">Previous</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item active">
-                                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>-->
             </div>
         </div>
 
