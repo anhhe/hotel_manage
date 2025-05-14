@@ -222,6 +222,9 @@
         <mxCell id="yooK8LwU4qN5jC1jcqoQ-105" value="8.2" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="140" y="318" width="40" height="30" as="geometry" />
         </mxCell>
+        <mxCell id="yooK8LwU4qN5jC1jcqoQ-106" value="Tạo đơn" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="392" y="115" width="158" height="85" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
